@@ -1,10 +1,11 @@
-import { Stack } from "expo-router";
+import { Tabs } from "expo-router";
 
 export default function AuthLayout(){
     return(
-        <Stack screenOptions={{headerShown: false}}>
-            <Stack.Screen name="Home"/>
-            <Stack.Screen name="Carrinho"/>
-        </Stack>
+        <Tabs screenOptions={{headerShown: false}}>
+            <Tabs.Screen name="Home"/>
+            <Tabs.Screen name="Carrinho"/>
+            <Tabs.Screen name="User"/>
+        </Tabs>
     )
 }

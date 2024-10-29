@@ -4,15 +4,17 @@ import { StatusBar } from 'expo-status-bar';
 import { useBag } from '../contextBag';
 import { useEffect, useState } from 'react';
 import { router } from 'expo-router';
-import { useUser } from '@clerk/clerk-expo';
 
-export function Header({OpenModal}) {
-
+export function Header() {
     const { cart, goToBag } = useBag();
     const [visible, setVisible] = useState(false);
 
     const HandleGoTobag = () => {
         goToBag(router);
+    }
+
+    const handleScreenUsuario = () =>{
+        router.push('/User');
     }
 
     useEffect(() => {
@@ -21,16 +23,13 @@ export function Header({OpenModal}) {
         }
     }, [cart]);
 
-    const { user } = useUser();
-
     return (
         <>
             <StatusBar backgroundColor='black' />
             <View className='flex justify-center w-full items-center h-28'>
                 <View className='bg-black w-full h-full justify-around items-center flex-row p-4'>
-                    <Pressable className='flex justify-center' onPress={OpenModal}>
-                        <Text className='text-white'>Olá</Text>
-                        <Text className='text-white'>{user?.firstName}</Text>
+                    <Pressable className='flex justify-center items-center border-2 p-2 rounded-full border-zinc-600' onPress={handleScreenUsuario}>
+                        <Feather name={'user'} size={30} color={"#ffff"}/>
                     </Pressable>
                     <View className='flex flex-row gap-2 items-center'>
                         <Feather name={'map-pin'} size={24} color={'#fff'} />

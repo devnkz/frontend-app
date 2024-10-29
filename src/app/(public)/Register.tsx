@@ -77,6 +77,7 @@ export default function Register() {
 
             {pendingEmailCode && (
                 <View className='w-full gap-12'>
+                    <Image source={require('../../assets/imgs/logo.png')}/>
                     <View>
                         <Text className='font-bold text-2xl mb-2'>Digite o código de verificação:</Text>
                         <TextInput className='w-full p-4 bg-white rounded-lg'

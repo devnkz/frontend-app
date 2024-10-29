@@ -7,7 +7,6 @@ import { Header } from '../components/header';
 import { BagProvider } from '../components/contextBag';
 import { Results_SeachBar } from '../components/FlatList_ResultSearchBar';
 import { NotFoundSearch } from '../components/pesquiseNotFound';
-import { ModalUser } from '../components/Modal';
 
 
 
@@ -83,16 +82,9 @@ export default function Home() {
         <BagProvider>
             <SafeAreaProvider>
                 <SafeAreaView style={{ flex: 1, backgroundColor: '#d3d3d3' }}>
-                    <Header OpenModal={() => setModalVisible(true)} />
-
+                    <Header/>
                     <ScrollView showsVerticalScrollIndicator={false}>
                         <>
-
-                            <ModalUser ModalVisible={ModalVisible} onRequestClose={() => {
-                                setModalVisible(!ModalVisible);
-                            }}  />
-
-
                             {visible && (
                                 <>
                                     <Text className='text-3xl w-4/5 ml-6 mt-4 font-bold'>Somente as melhores, Bebidas matam sua sede</Text>
@@ -106,14 +98,12 @@ export default function Home() {
                                         alterVisibleFalse();
                                     }} />
                             </View>
-
                             {buttonAlterVisible && (
                                 <>
                                     <Results_SeachBar results={results} />
                                     {ResultNotFound && (<NotFoundSearch text={'Item não encontrado!'} />)}
                                 </>
                             )}
-
                             {visible && (
                                 <ListProdutos />
                             )}
