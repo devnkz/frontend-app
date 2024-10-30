@@ -1,7 +1,7 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, Pressable, TextInput, Image } from "react-native";
 import { useAuth, useUser } from "@clerk/clerk-expo";
-import { InputComum } from "../components/input/inputComum";
 import { useState } from "react";
+import { ScrollView } from "moti";
 
 
 export default function User() {
@@ -29,22 +29,55 @@ export default function User() {
     }
 
     return (
-        <View style={{ flex: 1 }} className='justify-center items-center bg-zinc-900 p-4 rounded-lg gap-6'>
-            <View className='w-4/5'>
-                <Text className="text-2xl text-white text-center">Olá {user?.firstName}</Text>
-                <View className="w-full flex justify-center items-center mt-4 gap-2">
-                   
-                    <TouchableOpacity style={{ width: 300, marginTop: 12 }} onPress={handleUpdateProfile}>
-                        <View className="flex justify-center items-center bg-black p-2 rounded-md">
-                            <Text className="font-bold text-xl text-white">Atualizar seu perfil</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ width: 300, marginTop: 12 }} onPress={LogoutUser}>
-                        <View className="flex justify-center items-center bg-red-600 p-2 rounded-md">
-                            <Text className="font-bold text-xl text-white">Sair da conta</Text>
-                        </View>
-                    </TouchableOpacity>
+        <View style={{ flex: 1 }} className='justify-center items-center bg-zinc-900 rounded-lg gap-6'>
+            <View className="h-[500px] p-4 flex justify-end gap-2">
+                <View className="border-2 border-zinc-400 p-4 rounded-lg">
+                    <Image source={require('../../assets/imgs/logoWhite.png')}
+                        className="h-36 w-44"
+                    />
                 </View>
+                <View>
+                    <Text className="text-white text-center text-xl">{user?.fullName}</Text>
+                    <Text className="text-white text-center text-sm">Cliente</Text>
+                </View>
+            </View>
+            <View className="w-4/5 gap-8">
+                <View>
+                    <Text className="text-white text-xl">Email:</Text>
+                    <TextInput className="border-b-2 border-white w-full"
+                    placeholder={user?.emailAddresses[0].emailAddress} />
+                </View>
+                <View>
+                    <Text className="text-white text-xl">Nome:</Text>
+                    <TextInput className="border-b-2 border-white w-full"
+                    placeholder={user?.firstName} />
+                </View>
+                <View>
+                    <Text className="text-white text-xl">Sobrenome:</Text>
+                    <TextInput className="border-b-2 border-white w-full"
+                    placeholder={user?.lastName} />
+                </View>
+                <Text className="text-white text-center text-2xl">Adicione seu endereço</Text>
+                <View>
+                    <Text className="text-white text-xl">Bairro:</Text>
+                    <TextInput className="border-b-2 border-white w-full" />
+                </View>
+                <View>
+                    <Text className="text-white text-xl">Rua:</Text>
+                    <TextInput className="border-b-2 border-white w-full" />
+                </View>
+                <View>
+                    <Text className="text-white text-xl">Numero da casa:</Text>
+                    <TextInput className="border-b-2 border-white w-full" />
+                </View>
+            </View>
+            <View className="w-full bg-black p-4 flex items-center bottom-0 absolute gap-4">
+                <Pressable onPress={handleUpdateProfile} className="bg-transparent p-3 border-2 border-zinc-600 rounded-full w-4/5">
+                    <Text className="text-white text-center text-xl">Atualizar</Text>
+                </Pressable>
+                <Pressable onPress={LogoutUser} className="bg-transparent p-3 border-2 border-red-600 rounded-full w-4/5">
+                    <Text className="text-white text-center text-xl">Sair da conta</Text>
+                </Pressable>
             </View>
         </View>
     )
